@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!-- 写法一 -->
+
+    <!-- 整体相当于  <div>hello Vue2!</div>  -->
+    <div id="app"><!-- 容器，根组件 -->
+         <!-- 根组件模板 -->
+        <div>{{message}}</div>
+       
+    </div>
+    <script>
+        // 声明式：只需修改一个值
+        const app=Vue.createApp({
+            data(){ //选项是写法里 data是个函数，通过返回值来定义
+                return{// 返回对象内容拿到根组件模板里显示
+                    message:"hello Vue!"// message数据信息
+                    
+                }
+            }
+        })
+        app.mount("#app")//mount挂载，将app挂载到id为app上
+    </script>
+
+
+
+ <!-- 写法二 -->
+ <!-- 相当于吧<div>{{message}}</div>在template里直接声明，再将其挂载在app2上-->
+
+    <div id="app2">
+       <!-- <div>{{message}}</div> -->
+   </div>
+   <script>
+       const app2=Vue.createApp({
+           template:"<div>{{message}}</div>",//单引号换行不报错，双引号换行就报错     
+           data(){ 
+               return{
+                   message:"hello Vue2!"
+               }
+           }
+       })
+       app.mount("#app2")
+   </script>
+
+
+
+   <!-- 写法三 -->
+<!-- 相当于先吧message渲染在template里的div上，再将template信息挂载在app3上 -->
+
+   <div id="app3">
+    </div>
+    <template id="root">  
+        <div>{{message}}</div>
+    </template>
+<script>
+   const app3=Vue.createApp({
+       //template:"<div>{{message}}</div>",
+       template:"#root", 
+       data(){ 
+           return{
+               message:"hello Vue2!"
+           }
+       }
+   })
+   app.mount("#app3")
+</script>
+
+
+</body>
+</html>

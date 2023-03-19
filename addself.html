@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <template id="root">  
+        <div>
+            <div>{{mynumber}}</div>
+            <button @click="increment">+1</button>
+            <button @click="decrement">-1</button>
+        </div>
+        
+    </template>
+<script>
+   const app=Vue.createApp({
+       //template:"<div>{{message}}</div>",
+       template:"#root", 
+       data(){ 
+           return{
+               mynumber:2
+           }
+       },
+       methods:{
+              increment(){
+                  this.mynumber++
+              },
+              decrement(){
+                  this.mynumber--
+              }
+       },
+    //    creatde(){
+    //         console.log(this.$el)
+    //         console.log("创建")
+    //         // 发送一个ajax异步请求
+    //    },
+    //    mounted(){
+    //         // 发送一个ajax异步请求
+    //         console.log(this.$el)
+    //         console.log("挂载")
+    //    }
+
+       
+   })
+    app.mount("#app")
+</script>
+    
+</body>
+</html>

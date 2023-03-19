@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <template id="root">  
+        <div>
+            <ul>
+                <li  v-for="(item,index) in list">
+                    <input type="checkbox" v-select="item.checked">{{item.name}}
+                </li>
+            </ul>
+            <button @click="checkAll">全选</button>
+            <button @click="unCheckAll">不全选</button>
+           
+        </div>
+    </template>
+    <script>
+        const app=Vue.createApp({
+            template:"#root", 
+            data(){ 
+                return{
+                    list: [
+                        { name: "足球", checked: false },
+                        { name: "篮球", checked: false }, 
+                        { name: "乒乓球", checked: true }
+                    ]}
+            },
+            methods:{
+                checkAll(){
+                    // 遍历循环拿取数组对象的值
+                    this.list.forEach(i => {
+                        i.checked = true
+                    });
+                },
+                unCheckAll(){
+                    this.list.forEach(i => {
+                        i.checked = false
+                    });
+                }
+            },
+         //    局部注册
+         directives:{
+            select:{
+                mounted(el,binding){
+                    el.checked=binding.value
+                },
+                updated(el,binding){
+                    el.checked=binding.value
+                }
+            }
+         }
+     
+        })
+         //全局注册
+         // app.directive('focus'),{
+         //     mourted(el,binding){
+         //         console.log(el)
+         //         el.focus()
+         //     }
+         // }
+        app.mount("#app")
+     </script>
+</body>
+</html>

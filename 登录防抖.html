@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <template id="root">  
+       <div>
+        <button @click="login">原始登陆</button>
+        <button v-debounce="login">登录防抖</button>
+       </div>
+    </template>
+<script>
+   const app=Vue.createApp({
+       template:"#root", 
+       data(){ 
+           return{
+               
+           }
+       },
+       methods:{
+            login(){
+                console.log("登录成功")
+                // 真实登录会发送AJAX请求
+            },
+               
+       },
+       directives:{
+        debounce:{
+           mounted(el,binding){
+            let timer= null
+            el.addEventListener('click',()=>{
+                if(timer){
+                    // 如果timer存在，清除之前的time
+                    clearTimeout(timer)
+                }
+                // 如果timer不存在，创建timer
+                timer = setTimeout(()=>{
+                    // 若只有v-debounce
+                    // 直接写console.log("登录成功")
+
+                    // 直接调用login
+                    binding.value()
+                },1000)
+            })
+           }
+        }
+       }
+   })
+   app.mount("#app")
+</script>
+    
+</body>
+</html>

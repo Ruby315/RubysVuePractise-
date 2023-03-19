@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <template id="root">
+        <div>
+            <table border="1">
+                <tr>
+                    <th>序号</th>
+                    <th>名字</th>
+                    <th>数学</th>
+                    <th>语文</th>
+                    <th>英语</th>
+                    <th>总分数</th>
+                </tr>
+                <tr v-for="(item,index) in students">
+
+                    <td>{{index+1}}</td>
+
+                    <td v-for="(value,key,index) in item">
+                        <!-- {{value}} -->
+                        <template v-if="key=='math'||key=='chinese'||key=='english'">
+                            <span style="color: green;" v-if="value>=60">
+                                {{value}}
+                            </span>
+                            
+                            <span style="color: red;" v-else-if="value<60">
+                                {{value}}
+                            </span>
+                        </template>
+                        <template v-else>
+                            {{value}}
+                        </template >  
+                    </td>
+                </tr>
+            </table>
+            <button @click="mysort()">按总分进行排序</button>
+        </div>
+    </template>
+<script>
+   const app=Vue.createApp({
+       template:"#root", 
+       data(){ 
+           return{
+            students: [
+              { name: 'Bob', math: 97, chinese: 89, english: 67 },
+              { name: 'Tom', math: 67, chinese: 52, english: 98 },
+              { name: 'Jerry', math: 72, chinese: 87, english: 89 },
+              { name: 'Ben', math: 92, chinese: 87, english: 59 },
+              { name: 'Chan', math: 47, chinese: 85, english: 92 },
+        ]
+           }
+       },
+       mounted(){
+           this.students.forEach(element => {
+            element.total = element.math+element.chinese+element.english
+           });
+       },
+    //    computed: {
+    //         orderedStudents: function () {
+    //         return _.orderBy(this.students, 'element')
+    //     },
+
+        methods:{
+            mysort(){
+                this.students.sort((a,b)=>{
+                    // 排序
+                    if(a.total>b.total){
+                        return 1;
+                    }
+                    else{
+                        return -1;
+                    }
+                })
+            }
+        }
+
+      
+   })
+   app.mount("#app")
+</script>
+</body>
+</html>

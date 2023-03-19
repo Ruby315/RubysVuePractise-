@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<style>
+   
+</style>
+<body>
+    <div id="app"></div>
+        <template id="root">
+            <div>
+                <!-- if 与show都可以隐藏元素 -->
+                <div v-show = "isShow">{{message}}-----show</div>
+                <div v-if = "isShow">{{message}}----if</div>
+                <!-- if 与show的区别 -->
+                <!-- 当值位fals的时候：v-show是靠改变样式 display:none来隐藏，节点还在；v-if是直接删掉结点 -->
+
+                 <!--v-else与v-if可以使用 -->
+                <!-- 与if else使用方法相似 -->
+                <div v-if = "sex=='male'">男</div>
+                <div v-else-if = "sex=='female'">女</div>
+                <div v-else>跨性别</div>
+                
+
+                <div>
+                    <!-- 数组遍历 -->
+                    <ul>
+                        <li v-for ="(item,index) in studentName">{{index}}--{{index}}</li>
+                    </ul>
+                    <!-- 对象遍历 -->
+                    <ul>
+                        <li v-for="(item,key,index) of student">
+                            {{index}}--{{key}}--{{item}}
+                        </li>
+                    </ul>
+                    <!-- 对象数组遍历 -->
+                    <ul>
+                        <li v-for="(item,index) in students">
+                            {{item.id}}--{{item.name}}
+                        </li>
+                    </ul>
+                    <!-- 数字值遍历 -->
+                    <ul>
+                        <li v-for ="item in 5">
+                            {{item}}
+                        </li>
+                    </ul>
+
+                    <!-- 学生数组的遍历和改变 -->
+                    <ul>
+                        <li v-for="(item,index) in students">
+                            {{item.id}}---{{item.name}}
+                        </li>
+                    </ul>
+                    <button @click="changeStudent">change</button>
+
+                    <div>
+                        <ul>
+                            <li v-for="(item,index) in students" :key="itme.id">
+                                <input type="checkbox">{{item.name}}
+                            </li>
+                        </ul>
+                        <button @click="addstudent">新增学生</button>
+                    </div>
+                </div>
+
+                <div v-text="myText"></div>
+                <div>{{myText}}</div>
+                <!-- 两个意思与效果一致 -->
+
+                <div v-html="myhtml"></div>
+                <!-- 解析html -->
+
+                <div v-once="myText">{{message}}</div>
+                <!-- 只渲染一次 -->
+
+                <div v-pre>{{myText}}</div>
+                <!-- 相当于不去渲染结点 -->
+
+                <!-- v-cloak直接在浏览器上直接将差值显示出来 -->
+
+                
+
+            </div>
+                
+        </template>    
+          
+    <script>
+        const app =Vue.createApp({
+            template: "#root",
+            data(){
+                return{
+                    message:"hello vue",
+                    isShow: true,
+                    sex:"male",
+                    studentNames:["zs","lisi","wangwu"],
+                    student:{id:"001",name:"zs"},
+                    students:[
+                    {id:"001",name:"zs"},
+                    {id:"002",name:"zs1"},
+                    {id:"003",name:"zs2"},
+                    {id:"004",name:"zs3"},
+                    ],
+                    myText:"hhhhhh",
+
+                }
+            },
+
+            methods:{
+
+                changeStudent(){
+                    // 在尾部插入
+                    // this.students.push({id:"005",name:"zhaowu"})
+
+                    // 改变第一个信息值的名字
+                    // this.students[0].name = "新zhaowu"
+
+                    this.students.concat([{id:"005",name:"lisi"}])
+                },
+                addStudent(){
+                    this.students.splice(1,0,{id:"005",name:"zhao6"})
+                }
+            }
+        })
+        app.mount('#app')
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <template id="root">  
+        <div>{{message}}</div>
+        <div>{{mynumber+1}}</div>
+        <div>{{showmessage()}}</div>
+        <div>{{age > 30 ?"中年":"青年"}}</div>
+        <div>{{text}}</div>
+    </template>
+<script>
+   const app=Vue.createApp({
+       template:"#root", 
+       data(){ 
+           return{
+               message:"hello Vue2!",
+               mynumber:2,
+               age :27,
+               text:" <div>{{text}}</div>"
+           }
+       },
+       methods:{
+               showmessage(){
+                   return "1223456"
+               }
+       }
+   })
+   app.mount("#app")
+</script>
+    
+</body>
+</html>

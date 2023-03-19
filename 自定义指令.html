@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <template id="root">  
+        <div>
+            <input type="text" v-focus:a.b="massage" v-modle="massage">
+            <!-- 在显示时自动获取焦点 -->
+            <div v-pin:[direction]="pxvalue">我在这里</div>
+            <!-- direction距离左边还是右边 -->
+        </div>
+    </template>
+<script>
+   const app=Vue.createApp({
+       template:"#root", 
+       data(){ 
+           return{
+               message:"hello Vue!",
+               direction:"left",
+               pxvalue:50
+           }
+       },
+    //    局部注册
+       directives:{
+            // focus:{
+            //     mourted(el,binding){
+            //     console.log(el)
+            //     console.log("arg is",binding.atg)
+            //     console.log("modifiers is",binding.modifiers)
+            //     el.value="123"
+            //     el.focus()
+            //     // el指令绑定到的元素
+            //     },
+               
+            //     update(el,binding){
+            //         console.log("value is",binding.value)
+            //         console.log("oldvalue is",binding.oldvalue)
+            //     }
+            // },
+             pin:{
+                    mounted(el,binding){
+                        el.style.positon="absolute"
+                        el.style.color="red"
+                        el.style[binding.arg]=binding.value+"px"
+
+                    }
+                },  
+
+         }
+
+   })
+    //全局注册
+    // app.directive('focus'),{
+    //     mourted(el,binding){
+    //         console.log(el)
+    //         el.focus()
+    //     }
+    // }
+   app.mount("#app")
+</script>
+    
+</body>
+</html>
