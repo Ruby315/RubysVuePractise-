@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- 李洋209010318 -->
+    <style>
+        .header-left{
+            float: left;
+            margin-left: 180px;
+        }
+        .header-right{
+            margin-right: 25px;
+        }
+        .header-right>img{
+            margin-top: 20px;
+            margin-left: 290px;
+        }
+        .header-right>p{
+            
+            font-size: 12px;
+        }
+        .header-right>p>a{
+            color: #eb131e;
+        }
+        .header-left>img{
+            position: relative;
+            top: 20px;
+        }
+        .button1{
+            background-color: #EB131E;
+            color: #ffffff;
+        }
+        .sherchBox{
+            position: relative;
+            right: -150px;
+        }
+        ul,li{
+            list-style: none;
+        }
+		a{
+			text-decoration: none;
+		}
+        .nav{
+           /* width: 100%; */
+		   margin-top: 50px;
+		   height: 100px;
+		   background-color: #eb131e;
+        }
+		.nav-list{
+			width: 1500px;
+			margin: 0 auto;
+		}
+		.menus{
+			float: left;
+		}
+		.menus .menus-a{
+			/* display: block; */
+			float: left;
+			font-size: 25px;
+			color: #ffffff;
+			font-weight: bold;
+			width: 140px;
+			text-align: center;
+			height: 70px;
+			padding: 30px 0 0 0;
+			border-right: 1px #FFFFFF solid;
+		}
+        .menus-a>div{
+            margin-top: 5px;
+           font-size: 15px; 
+        }
+		.menus>.menus-a:hover{
+			background-color: #cf2913;
+			color: #fff;
+		}
+		.nav-list-menu{
+			display: block;
+			width: 110px;
+			text-align: center;
+			z-index: 1000;
+			margin-top: 100px;
+		}
+        .subMenu{
+            
+            position: relative;
+            right: 40px;
+        }
+		.subMenu a{
+            
+			float: left;
+			font-size: 15px;
+			background-color: #EB131E;
+			color: #FFFFFF;
+			width: 140px;
+			height: 50px;
+			line-height: 50px;
+			/* padding-left: 30px; */
+			text-align: center;
+			border-right: 1px #909090 solid;
+		}
+        .subMenu a:hover{
+			background-color: #cf2913;
+		}
+    </style>
+
+</head>
+<body>
+    <div id="app"></div>
+    <template id="root">
+        <div align="center">
+            <div class="header-left">
+                <img src="https://www.hongyan.info/Public/style/lihong/images/public/logo.png">
+            </div>
+            <div class="header-right">
+                <img src="https://www.hongyan.info/Public/style/lihong/images/public/icon-18.png">
+                <p>
+                    <a href="#">设为首页</a>|
+                    <a href="#">加入收藏</a>|
+                    <a href="#">热线：023-65312300（沙坪坝地区）023-63303457（渝中片区）</a>|
+                    <a href="#">English</a>
+                </p>
+                <div class="sherchBox">
+                    <input type="text" placeholder="请输入搜索关键词">
+                    <button class="button1">搜索</button>
+                </div>
+                
+            </div>
+        </div>
+   
+        <div class='nav'>
+            <ul class="nav-list">
+                <li v-for="(nav,index) in menus" :key="index" class="menus" @mouseover="nav.show=!nav.show" @mouseout="nav.show=!nav.show">
+                    <a :href="nav.url" class="menus-a">
+                        {{nav.name}}
+                        <div>{{nav.en}}</div>
+                        <div class="bod"></div>
+
+                    </a>
+                   <ul class="nav-list-menu" v-show='nav.show'>
+                        <li v-for="subMenu in nav.subMenus" class="subMenu">
+                            <a :href="nav.url">
+                                {{subMenu.name}}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+    </template>
+    <script>
+        const app = Vue.createApp({
+            template:'#root',
+            data(){
+                return {
+                    menus:[
+                        {name:'首页', en:'Home',url:'#'},
+
+                        {name:'关于红岩',en:'HongYan', url:'#',
+                        subMenus:[
+                            {name:'红岩文化' ,url:'#',},
+                            {name:'博物馆机构',url:'#',},
+                            {name:'历史沿革',url:'#',},
+                        ]},
+                        {name:'公告动态', en:'Dynamics', url:'#',
+                        subMenus:[
+                            {name:'文博信息',url:'#',},
+                            {name:'政务平台',url:'#',},
+                            {name:'公告',url:'#',},
+                            {name:'专题报道',url:'#',},
+                        ]},
+                        {name:'馆藏精品',en:'Collections' ,url:'#',
+                        subMenus:[
+                            {name:'一级文物',url:'#',},
+                            {name:'二级文物',url:'#',},
+                            {name:'三级文物',url:'#',},
+                        ]},
+                        {name:'陈列展览',en:'Exhibition', url:'#',
+                        subMenus:[
+                            {name:'虚拟展览',url:'#',},
+                            {name:'基本陈列',url:'#',},
+                            {name:'复原陈列',url:'#',},
+                            {name:'临时展览',url:'#',},
+                            {name:'展览交流',url:'#',},
+                        ]},
+                        {name:'研究开发',en:'Research' ,url:'#',
+                        subMenus:[
+                            {name:'历史研究',url:'#',},
+                            {name:'艺术创作',url:'#',},
+                            {name:'影音在线',url:'#',},
+                            {name:'文创产品',url:'#',},
+                        ]},
+                        {name:'公共教育',en:'Education', url:'#',
+                        subMenus:[
+                            {name:'党性教育',url:'#',},
+                            {name:'爱国主义教育',url:'#',},
+                            {name:'研学实践教育',url:'#',},
+                            {name:'科普教育',url:'#',},
+                        ]},
+                        {name:'参观服务',en:'Service' ,url:'#',
+                        subMenus:[
+                            {name:'景点介绍',url:'#',},
+                            {name:'服务内容',url:'#',},
+                            {name:'网上预约',url:'#',},
+                            {name:'志愿服务',url:'#',},
+                        ]},
+                        {name:'网上预约',en:'Reservation' ,url:'#',},
+
+                    ]
+                }
+            },
+        })
+        app.mount('#app')
+    </script>
+</body>
+</html>

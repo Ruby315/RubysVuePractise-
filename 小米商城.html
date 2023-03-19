@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color:#dadada;
+    }
+    ol,li,ul{
+        list-style: none;
+    }
+    .imgL{
+        width: 234px;
+        height: 614px;
+    }
+    .all{
+        width: 1226px;
+        height: 492px;
+    }
+    .phone-all{
+        width: 1200px;
+        height: 614px;
+        position: relative;
+        left: 200px;
+        top: -650px;
+    }
+    
+    .phone{
+        float: left;
+    }
+    .phone2{
+        width: 234px;
+        height: 300px;
+        background-color: aliceblue;
+        margin-top: 15px;
+        margin-left: 12px;
+    }
+    .phone2>img{
+        width: 160px;
+        height: 160px;
+        margin-left: 35px;
+    }
+    .phone2>h3{
+        text-align: center;
+    }
+    .title{
+        font-size: 12px;
+        color: #b0b0b0;
+        text-align: center;
+        margin-top: -10px;
+    }
+    .price{
+        font-size: 14px;
+        color: #ff6700;
+        text-align: center;
+    }
+
+</style>
+<body>
+    <div id="app">
+    </div>
+    <template id="root">  
+        <div class="all">
+            <div>
+                <img  class="imgL" src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d91bb6cf7da0947e8a6e50e03f4daf06.jpg?thumb=1&w=293&h=768&f=webp&q=90" alt="">
+            </div>
+            <div  class="phone-all">
+                <ul>
+                    <li class="phone" v-for="(i,index) in phones"> 
+                        <div class="phone2">
+                            <img v-bind:src="i.img">
+                            <h3>{{i.name}}</h3>
+                            <p class="title">{{i.title}}</p>
+                            <p class="price">{{i.price}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <a href=""></a>
+        
+    </template>
+<script>
+   const app=Vue.createApp({
+       template:"#root", 
+       data(){ 
+           return{
+            phones:[
+            {img:'https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202212301043_9e2a889ac4d99a1bbf95aa2defda039a.png?thumb=1&w=250&h=250&f=webp&q=90',
+            name:'Redmi 12C',title:'高性能续航，5000万像素超高清双摄',price:'699元起' },
+            {img:'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a6cec580260ceb20ae6a885c2c65c611.png?thumb=1&w=250&h=250&f=webp&q=90',
+            name:'Redmi K60',title:'骁龙8+|2K高光直屏|5500mAh+67',price:'2499元起' },
+            {img:'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/f37dd30477e7ba040c7fb69c31ad8bf3.png?thumb=1&w=250&h=250&f=webp&q=90',
+            name:'Redmi K60 Por',title:'【二代骁龙8】狂暴引擎',price:'3299元起' },
+            {img:'https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202212251443_29b17941a7365948446bd193011d9241.png?thumb=1&w=250&h=250&f=webp&q=90',
+            name:'Redmi Note 12 Por 极速版',title:'高通骁龙778G，OLED柔性直屏+一亿...',price:'1699元起' },
+            {img:'https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202211292351_92aba2c69123166a74ba2e2b525b1ae2.png?thumb=1&w=250&h=250&f=webp&q=90',
+            name:'Xiaomi 13 限量定制色',title:'全新第二代骁龙8|徕卡专业光学镜头',price:'4999元起' },
+            {img:'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/aa047170a22d9f0852254aa36df5f5f0.png?thumb=1&w=250&h=250&f=webp&q=90',
+            name:'Xiaomi 13 Por',title:'全新第二代骁龙8|徕卡专业光学镜头',price:'4999元起' },
+            {img:'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/94c6497b70f2e881460cb232082a0da6.png?thumb=1&w=250&h=250&f=webp&q=90',
+            name:'Xiaomi 13',title:'全新第二代骁龙8|徕卡专业光学镜头',price:'3999元起' },
+            {img:'https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202210262033_ef39fca0e37395d07682124770fd3ad9.png?thumb=1&w=250&h=250&f=webp&q=90',
+            name:'Redmi Note 12 5G',title:'三星OLED护眼屏|骁龙5G芯|50...',price:'1199元起' },
+            ]
+           }
+       },
+
+       
+   })
+    app.mount("#app")
+</script>
+    
+</body>
+</html>
